@@ -14,6 +14,7 @@ pipeline {
         stage('--package--') {
             steps {
                 bat "mvn package"
+echo "hi"
             }
         }
     }
