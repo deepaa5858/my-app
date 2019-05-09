@@ -1,21 +1,55 @@
-pipeline {
+pipeline 
+{
     agent any
-    stages {
-        stage('---clean---') {
-            steps {
-                bat "mvn clean"
-            }
-        }
-        stage('--test--') {
-            steps {
-                bat "mvn test"
-            }
-        }
-        stage('--package--') {
-            steps {
-                bat "mvn package"
-echo "hi"
-            }
-        }
+    stages 
+{         
+    stage('checkout')
+    {
+    steps
+    {
+    checkout changelog: false, poll: false, scm: [$class: 'GitSCM', 
+branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: 
+false, extensions: [], submoduleCfg: [], userRemoteConfigs: 
+[[credentialsId: 'git-creds', url: 
+'https://github.com/deepakirthi/my-app.git']]]
+    }
+    } 
+    stage('git credentials')
+    { 
+    steps
+    {
+      git changelog: false, credentialsId: 'git-creds', poll: false, 
+url: 'https://github.com/deepakirthi/my-app.git'
+    }
     }
 }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
