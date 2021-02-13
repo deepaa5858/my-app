@@ -1,0 +1,11 @@
+pipeline{
+    agent any
+        stages{
+            stage("checkout"){
+                steps{
+                    git credentialsId: 'git_creds', url: 'https://github.com/deepaa5858/my-app.git'
+                }
+            
+            }
+        }
+    }
